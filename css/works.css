@@ -702,6 +702,9 @@ h2 {
     padding: 0;
     grid-template-rows: 60px 1fr 60px;
   }
+  .project-role, .project-task {
+    padding: 0 !important;
+  }
   .design-marquee {
     grid-area: design-maq;
     height: max-content;

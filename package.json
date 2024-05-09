@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node main.js",
     "build": "webpack --mode production",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build"
   },
   "name": "vickkie.github.io",
   "version": "1.0.0",
