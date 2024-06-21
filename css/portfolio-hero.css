@@ -52,7 +52,8 @@ body {
 @font-face {
   font-display: swap;
   font-family: "LA-LUXE";
-  src: url("../fonts/Pavelt-VG24B.woff") format("woff");
+  src: url("https://raw.githubusercontent.com/vickkie/uzitrake/main/Bricolage%20Grotesque.woff2") format("woff2");
+  /* src: url("https://raw.githubusercontent.com/vickkie/uzitrake/main/AtiplaND-Regular.woff2") format("woff2"); */
 }
 
 @font-face {
@@ -122,7 +123,7 @@ a:focus-visible {
 main {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 100vh;
+  grid-template-rows: 100svh;
 }
 
 .frame {
@@ -131,7 +132,7 @@ main {
   display: grid;
   align-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 100svh;
   padding: 1rem 1rem 0.5rem 1rem;
   pointer-events: none;
   font-size: 1rem;
@@ -188,7 +189,7 @@ main {
 }
 
 .menu-is-open {
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
 }
 
@@ -257,11 +258,12 @@ main {
 .content-hero {
   grid-area: 1 / 1 / 2 / 2;
   display: grid;
-  grid-template-rows: 40px 1fr 1fr 1fr 1fr 1fr 1fr 10px;
+  grid-template-rows: 40px 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr;
   width: 100vw;
   position: relative;
-  height: 100vh;
+  height: 100svh;
+  z-index: 2;
 }
 
 .portfolio-map {
@@ -300,7 +302,7 @@ main {
   line-height: 0.75;
   cursor: default;
   grid-column: auto;
-  grid-row: 3/4;
+  grid-row: 2/4;
 }
 .l1__left {
   grid-column: 2/3;
@@ -443,7 +445,7 @@ main {
   grid-area: 1 / 1 / 2 / 2;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 100vh;
+  grid-template-rows: 100svh;
   position: relative;
   background: var(--color-bg);
   pointer-events: none;
@@ -509,7 +511,7 @@ main {
 }
 
 .tiles__line-img--large {
-  width: 100vh;
+  width: 100svh;
   border-radius: 20vh;
 }
 
@@ -607,7 +609,7 @@ main {
   grid-template-columns: 2fr 1fr;
   /* grid-template-rows: repeat(3, minmax(33.3vh, auto)); */
   grid-template-rows: 10vh 30vh 1fr 1fr;
-  min-height: 100vh;
+  min-height: 100svh;
   max-height: fit-content;
   width: 100vw;
   transition: all 0.3s linear;
@@ -694,7 +696,7 @@ main {
 .slide {
   display: flex;
   align-items: stretch;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   background-color: var(--color-black);
   position: relative;
@@ -972,12 +974,12 @@ main {
 
 .guide-line {
   position: absolute;
-  top: -21.5vh;
+  top: -15.5vh;
   left: 0;
   right: 0;
   margin: 0 auto;
   width: 0.052vw;
-  height: 21.5vh;
+  height: 15.5vh;
   background-color: var(--color-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1979,4 +1981,58 @@ main {
   background: #000;
   height: 100%;
   opacity: 0.25;
+}
+
+/* added */
+.meeting-content-bottom {
+  border-bottom: 4px solid #d898d8;
+  bottom: 0;
+  display: flex;
+  font-family: OPPOSans-Medium;
+  height: 79px;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.meeting-content-bottom .in-world-btn-wrap {
+  align-items: center;
+  background: url(../img/svg/lakeme.svg) no-repeat 50%;
+  bottom: -4px;
+  display: flex;
+  height: 75px;
+  justify-content: center;
+  position: relative;
+  transform-origin: bottom;
+  width: 750px;
+}
+.meeting-content-bottom .in-world-btn {
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  height: 50px;
+  justify-content: center;
+  margin-top: 10px;
+  width: 165px;
+}
+
+.image-icon {
+  display: flex;
+}
+.image-icon-span {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.p-canvas-webgl {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
 }
