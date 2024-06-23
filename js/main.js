@@ -16,6 +16,13 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+let emailButtons = selectAll(".emailme");
+
+emailButtons.forEach((emailButton) => {
+  emailButton.addEventListener("click", function () {
+    window.open("mailto:vickkietrake@gmail.com");
+  });
+});
 // // Call the splittingjs to transform the data-splitting texts to spans of chars
 // Splitting();
 
@@ -399,29 +406,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     window.addEventListener("resize", hideMf);
 
-    // Group 10:  Magnetic effect for elements with class .viewall
-
-    const els = selectAll(".magnetic");
-
-    els.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        console.log("magnettt");
-      });
-
-      // Apply Magnetic effect to each element individually
-      new Magnetic(el, {
-        y: 0.4, // horizontal delta
-        x: 0.4, // vertical delta
-        s: 0.2, // speed
-        rs: 0.7, // release speed
-      });
-    });
-
-    // Automatic handle magnetic elements through attribute
-    $("[data-magnetic]").each(function () {
-      new Magnetic(this);
-    });
-
     //Group 11: scroll to  a location
 
     gsap.registerPlugin(ScrollToPlugin);
@@ -512,132 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 0);
 });
 
-//Group 13: change Array of words in hello contact footer
-
-const words = ["Hello", "Hola", "Bonjour", "Salut", "Chao"];
-let currentIndex = 0;
-
-function changeWord() {
-  const span = document.getElementById("changehello");
-  currentIndex = (currentIndex + 1) % words.length;
-  span.innerHTML = words[currentIndex];
-}
-
-// Call the function after 10 seconds
-setInterval(changeWord, 10000);
-
-// Group 13: copy email address
-
-function copyToClipboard(text) {
-  if (innerWidth > 767 && document.hasFocus()) {
-    navigator.clipboard.writeText(text);
-
-    let copies = selectAll(".copy");
-
-    copies.forEach((copy) => {
-      copy.innerHTML = "Copied";
-
-      setTimeout(() => {
-        copy.innerHTML = "Copy!";
-      }, 4000);
-    });
-  }
-}
-
-// Group 14 : animate text
-const text3d = () => {
-  if (innerWidth > 767) {
-    gsap.registerPlugin(ScrollTrigger);
-    const fx19Titles = [...selectAll("[data-effect19]")];
-
-    fx19Titles.forEach((title) => {
-      const chars = title.querySelectorAll(".char");
-
-      chars.forEach((char) => gsap.set(char.parentNode, { perspective: 1000 }));
-
-      gsap.fromTo(
-        chars,
-        {
-          "will-change": "opacity, transform",
-          transformOrigin: "50% 0%",
-          opacity: 0,
-          rotationX: -90,
-          z: -200,
-        },
-        {
-          ease: "power1",
-          opacity: 1,
-          stagger: 0.05,
-          rotationX: 0,
-          z: 0,
-          scrollTrigger: {
-            trigger: title,
-            start: "center bottom",
-            end: "bottom top+=40%",
-            scrub: true,
-          },
-        }
-      );
-    });
-  }
-};
-
-text3d();
-
-let resizeTimer;
-window.addEventListener("resize", () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    text3d();
-    copyToClipboard();
-  }, 250);
-});
-
-// Group 14: rotate the socials star
-
-if (innerWidth > 767) {
-  let socialtl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".wiggle",
-      start: "top 90%",
-      end: "top 30%",
-      scrub: 1,
-    },
-  });
-
-  socialtl.fromTo(
-    "#logo-36",
-    {
-      scale: 0.3,
-      y: "-200px",
-      rotate: 0,
-    },
-    {
-      scale: 1,
-      y: 0,
-      rotate: 360,
-    }
-  );
-}
-
-//Group 15: lets rotate some i's in the footer
-
-let chars = [...selectAll(".rotate-i .char")];
-
-// Here we're creating a timeline that we can use
-const lettertl = gsap.timeline({
-  repeat: -1,
-  duration: 2,
-  delay: 3,
-  yoyo: true,
-});
-
-lettertl.to(chars[6], { rotation: 360 });
-lettertl.to(chars[11], { rotation: 360 });
-
 //use the defaults
-
-let emailbox = select(".email-box");
 
 //  Group 13: darkmode if user browser prefers
 
@@ -649,6 +508,7 @@ let emailbox = select(".email-box");
 // }
 
 //Animate the fucking explorer
+let emailbox = select(".email-box");
 
 let explorer = select(".in-world-btn-wrap");
 let explorerLine = select(".meeting-content-bottom");
@@ -660,10 +520,18 @@ exploTl.to(explorer, {
   scaleX: 0,
 });
 
-exploTl.to(explorerLine, {
-  scale: 0,
-  duration: 0.6,
-});
+exploTl.fromTo(
+  explorerLine,
+  {
+    scaleX: 1,
+    opacity: 1,
+    transformOrigin: "center center",
+  },
+  {
+    scaleX: 0,
+    opacity: 0,
+  }
+);
 
 ScrollTrigger.create({
   trigger: explorer,
