@@ -23,8 +23,9 @@ const splitchars = document.querySelectorAll(".split-char");
 
 splitchars.forEach((splitchar) => {
   new SplitText(splitchar, {
-    type: "chars",
+    type: "chars,words",
     charsClass: "char",
+    wordsClass: "word",
   });
 });
 
@@ -182,12 +183,13 @@ document.addEventListener("DOMContentLoaded", function () {
     //Group 5 : show footer
 
     if (innerWidth > 767) {
+      let footerScroller = select(".empty");
       function showFooter() {
         gsap.registerPlugin(ScrollTrigger);
 
         let herotimeline = gsap.timeline({
           scrollTrigger: {
-            trigger: ".empty",
+            trigger: footerScroller,
             start: "top bottom",
             end: "bottom 60%",
             scrub: true,
@@ -195,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         });
 
-        herotimeline.to(".empty", {
+        herotimeline.to(footerScroller, {
           y: "-40vh",
           ease: "expo.out",
           // duration: 3
@@ -645,3 +647,46 @@ let emailbox = select(".email-box");
 // } else {
 //   document.body.classList.remove("dark-mode");
 // }
+
+//Animate the fucking explorer
+
+let explorer = select(".in-world-btn-wrap");
+let explorerLine = select(".meeting-content-bottom");
+
+let exploTl = gsap.timeline({});
+
+exploTl.to(explorer, {
+  scaleY: 0,
+  scaleX: 0,
+});
+
+exploTl.to(explorerLine, {
+  scale: 0,
+  duration: 0.6,
+});
+
+ScrollTrigger.create({
+  trigger: explorer,
+  start: "top 80%",
+  animation: exploTl,
+  // scrub: true,
+  onEnter: () => exploTl.play(),
+  onLeaveBack: () => exploTl.reverse(),
+});
+
+//hover animation on same
+
+let expoHoverTl = gsap.timeline();
+
+expoHoverTl.to(explorer, {
+  duration: 0.9,
+  transform: "scale(1,1.25)",
+});
+
+explorer.addEventListener("mouseenter", () => {
+  expoHoverTl.play();
+});
+
+explorer.addEventListener("mouseleave", () => {
+  expoHoverTl.reverse();
+});
