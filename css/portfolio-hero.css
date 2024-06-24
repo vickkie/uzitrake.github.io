@@ -23,6 +23,7 @@ body {
   --color-bg: #ebebeb;
   --color-biege: #e3dacd;
   --stick-black: #000;
+  --stick-white: #fff;
   --hero-font: 8vw;
   --hero-sub-font: 1.3rem;
   --size-submain: 3rem;
@@ -62,7 +63,7 @@ body {
 @font-face {
   font-display: swap;
   font-family: "LA-LUXE";
-  src: url("https://raw.githubusercontent.com/vickkie/uzitrake/main/Bricolage%20Grotesque.woff2") format("woff2");
+  src: url("../fonts/BricolageGrotesque.woff2") format("woff2");
   /* src: url("https://raw.githubusercontent.com/vickkie/uzitrake/main/AtiplaND-Regular.woff2") format("woff2"); */
 }
 
@@ -759,6 +760,9 @@ main {
   .project__header__linkb {
     border-bottom-left-radius: 29px;
     border-bottom-right-radius: 29px;
+  }
+  .project__header__link__textb {
+    text-align: center;
   }
 
   .mid-larger {
@@ -1459,6 +1463,7 @@ main {
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
   width: var(--screen-width);
+  border-top: solid 1px var(--color-link-hover);
 }
 .lets-you {
   display: flex;
@@ -1471,7 +1476,7 @@ main {
 }
 .same-you {
   font-size: 1.1rem;
-  color: var(--color-white);
+  color: var(--stick-white);
 }
 
 .yoyo-main {
@@ -1774,7 +1779,7 @@ main {
   width: 100%;
   grid-column: 1/4;
   grid-row: 1/6;
-  background: var(--color-white);
+  background: var(--stick-white);
   border-radius: 29px;
   width: calc(100vw - 26px);
   margin: auto;
@@ -1909,8 +1914,8 @@ main {
 
 .intro__button {
   border: 1px solid var(--color-black);
-  background: white;
-  box-shadow: -3px -2px 0 var(--color-black);
+  background: var(--stick-white);
+  box-shadow: -3px -2px 0 var(--stick-black);
   border-radius: 50%;
   justify-self: center;
   margin-top: 1rem;
@@ -2068,7 +2073,7 @@ main {
 
 .mid-larger {
   font-size: var(--hc-xxl);
-  color: var(--color-white);
+  color: var(--stick-white);
   text-align: center;
 }
 .italicc {
@@ -2228,7 +2233,7 @@ li {
 }
 @media (min-width: 769px) {
   [data-gl-text][data-gl-text-active] {
-    color: var(--color-white);
+    color: var(--stick-white);
   }
 }
 .project__header__informationb {
@@ -2238,7 +2243,7 @@ li {
 }
 @media (min-width: 769px) {
   [data-gl-text][data-gl-text-active] {
-    color: var(--color-white);
+    color: var(--stick-white);
   }
 }
 .project__header__titleb {
@@ -2250,7 +2255,7 @@ li {
 
 @media (min-width: 769px) {
   [data-gl-text][data-gl-text-active] {
-    color: var(--color-white);
+    color: var(--stick-white);
   }
 }
 .project__header__descriptionb {
@@ -2262,7 +2267,7 @@ li {
 }
 @media (min-width: 769px) {
   [data-gl-text][data-gl-text-active] {
-    color: var(--color-white);
+    color: var(--stick-white);
   }
 }
 .project__header__link__textb {
@@ -2313,10 +2318,6 @@ button {
   font-size: inherit;
   font-weight: inherit;
   text-align: left;
-}
-body,
-button {
-  color: #181818;
 }
 .btn .mot,
 .menu-item a .mot {
@@ -2447,7 +2448,7 @@ span {
 }
 
 .icon-text_text {
-  color: var(--color-white);
+  color: var(--stick-white);
   font-size: 0.875rem;
   line-height: 1.45;
   transform: translateY(2px);
@@ -2484,4 +2485,78 @@ span {
   width: 2rem;
 
   margin: auto;
+}
+@media screen and (max-width: 767px) {
+  .vertical-centered-box .content {
+    transform: scale(1.7);
+  }
+  .vertical-centered-box .loader-circle {
+    transform: scale(1.2);
+  }
+}
+@media screen and (min-width: 768px) {
+  .vertical-centered-box .content {
+    transform: scale(2.3);
+  }
+  .vertical-centered-box .loader-circle {
+    transform: scale(1.6);
+  }
+}
+.loader-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  margin-left: -60px;
+  margin-top: -60px;
+}
+.loader-line-mask {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 120px;
+  margin-left: -60px;
+  margin-top: -60px;
+  overflow: hidden;
+  transform-origin: 60px 60px;
+  -webkit-mask-image: -webkit-linear-gradient(top, #000000, rgba(0, 0, 0, 0));
+  animation: rotate 1.2s infinite linear;
+}
+.loader-line-mask .loader-line {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.logo-loaded {
+  position: relative;
+  margin: auto;
+  height: 30%;
+}
+.loadedlogo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: -1;
+}
+.content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2000;
+  pointer-events: none;
 }

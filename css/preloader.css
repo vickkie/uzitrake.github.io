@@ -59,10 +59,12 @@
   overflow: hidden;
   height: 100vh;
 }
+.gallery {
+  position: static;
+}
 
 .gallery__item {
   position: absolute;
-
   margin: 0;
   display: grid;
   grid-template-areas: "gallery-image";
@@ -83,22 +85,22 @@
 
 .gallery__item:nth-of-type(1) {
   top: 10%;
-  left: 10%;
+  left: -50%;
 }
 
 .gallery__item:nth-of-type(2) {
   top: 20%;
-  right: 10%;
+  right: -50%;
 }
 
 .gallery__item:nth-of-type(3) {
   bottom: 20%;
-  left: 10%;
+  left: -50%;
 }
 
 .gallery__item:nth-of-type(4) {
   bottom: 10%;
-  right: 10%;
+  right: -50%;
 }
 
 .gallery__item-imginner {

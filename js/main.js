@@ -23,8 +23,11 @@ emailButtons.forEach((emailButton) => {
     window.open("mailto:vickkietrake@gmail.com");
   });
 });
-// // Call the splittingjs to transform the data-splitting texts to spans of chars
+
+//?Call the splittingjs to transform the data-splitting texts to spans of chars
 // Splitting();
+
+gsap.registerPlugin(SplitText);
 
 const splitchars = document.querySelectorAll(".split-char");
 
@@ -79,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function lenisSmooth() {
       if (innerWidth > 767) {
+        // let logoGif = document.querySelector(".l4__right div");
+
         const lenis = new Lenis({
           duration: 3,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

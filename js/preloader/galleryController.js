@@ -1,17 +1,6 @@
 import { calcWinsize, getRandomInteger } from "./utils.js";
 import GalleryItem from "./galleryItem.js";
 
-gsap.registerPlugin(SplitText);
-
-const splitchars = document.querySelectorAll(".split-chars");
-
-splitchars.forEach((splitchar) => {
-  new SplitText(splitchar, {
-    type: "chars",
-    charsClass: "char",
-  });
-});
-
 // Calculate the viewport size
 let winsize = calcWinsize();
 window.addEventListener("resize", () => (winsize = calcWinsize()));
@@ -23,8 +12,6 @@ export default class GalleryController {
       galleryEl: galleryEl,
       title: document.querySelector(".title-uzi"),
     };
-    this.DOM.titleChars = this.DOM.title.querySelectorAll(".char");
-    this.titleCharsTotal = this.DOM.titleChars.length;
     this.DOM.galleryItemElems = [...this.DOM.galleryEl.querySelectorAll(".gallery__item")];
     this.galleryItems = [];
     this.DOM.galleryItemElems.forEach((el) => this.galleryItems.push(new GalleryItem(el)));
@@ -33,19 +20,8 @@ export default class GalleryController {
     this.intro();
   }
   intro() {
-    // let's start by animating the main intro text
-    const timeline = gsap.timeline().to(
-      this.DOM.title,
-      {
-        duration: 1,
-        ease: "expo",
-        startAt: { y: "10%" },
-        y: "0%",
-        opacity: 1,
-      },
-      0
-    );
-
+    // let's start by defining timeline
+    const timeline = gsap.timeline();
     // now let's center the images (stack)
     for (const [pos, item] of this.galleryItems.entries()) {
       timeline.set(
@@ -84,21 +60,6 @@ export default class GalleryController {
         document.body.classList.remove("noscroll");
         // scroll.update();
       }, "startAnimation")
-
-      // animate the main title characters out and fade them out too
-      .to(
-        this.DOM.titleChars,
-        {
-          duration: 1,
-          ease: "expo",
-          x: (pos, target) => {
-            return -40 * (Math.floor(this.titleCharsTotal / 2) - pos);
-          },
-          opacity: 0,
-          stagger: { from: "center" },
-        },
-        "startAnimation"
-      )
 
       // the other images in the stack will animate its translation values randomly
       .to(
