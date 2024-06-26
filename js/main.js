@@ -3,6 +3,8 @@
 let select = (e) => document.querySelector(e);
 let selectAll = (e) => document.querySelectorAll(e);
 
+gsap.registerPlugin(SplitText);
+
 // Group 0: service worker
 // main.js
 if ("serviceWorker" in navigator) {
@@ -16,6 +18,7 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+// Group 1; EMAIL
 let emailButtons = selectAll(".emailme");
 
 emailButtons.forEach((emailButton) => {
@@ -24,22 +27,21 @@ emailButtons.forEach((emailButton) => {
   });
 });
 
-//?Call the splittingjs to transform the data-splitting texts to spans of chars
-// Splitting();
+// Group 2:Call the splittingjs to transform the data-splitting texts to spans of chars
 
-gsap.registerPlugin(SplitText);
+document.addEventListener("DOMContentLoaded", () => {
+  const splitchars = document.querySelectorAll(".split-char");
 
-const splitchars = document.querySelectorAll(".split-char");
-
-splitchars.forEach((splitchar) => {
-  new SplitText(splitchar, {
-    type: "chars,words",
-    charsClass: "char",
-    wordsClass: "word",
+  splitchars.forEach((splitchar) => {
+    new SplitText(splitchar, {
+      type: "chars,words",
+      charsClass: "char",
+      wordsClass: "word",
+    });
   });
 });
 
-//Group 1; code to update time
+//Group 3; code to update time
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     let time = select(".time");
@@ -52,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTime();
     }, 1000);
 
-    //Group 2; code to open menu
+    //Group 4; code to open menu
     let openMenu = select(".button-menu");
     let closeMenu = select(".button-close");
     let menuholders = selectAll(".menu-will-open");
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // GROUP 3; smooth scrolling
+    // GROUP 5  ; smooth scrolling
 
     function lenisSmooth() {
       if (innerWidth > 767) {
@@ -109,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("resize", lenisSmooth);
 
-    //Group 4 : line animation for guiding hero
+    //Group 6 : line animation for guiding hero
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -192,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    //Group 5 : show footer
+    //Group 7 : show footer
 
     if (innerWidth > 767) {
       let footerScroller = select(".empty");
@@ -221,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
       window.addEventListener("resize", showFooter);
     }
 
-    // Group 6 : folding of text from opaCITY AnimaTION
+    // Group 8 : folding of text from opaCITY AnimaTION
 
     const fx28Titles = [...selectAll("[data-effect28]")];
 
@@ -295,71 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    //Group 7; code to change image on menu clicking
-
-    let menGallery = select(".menu-gallery"),
-      workMenu = select(".menu-work"),
-      gallerypics = menGallery.querySelectorAll(".gallery__item-imginner");
-
-    const changeWorkMenu = () => {
-      gallerypics.forEach(function (element, i) {
-        //  let gallerypic = querySelector(".gallery__item-imginner");
-        let imageSet = element.getAttribute("data-image");
-
-        let timeline = gsap.timeline();
-
-        timeline
-          .addLabel("rotate,+=0")
-          .to(
-            element,
-            {
-              transform: "rotate3d(0, 1, 0, 180deg)",
-              perspective: "1000px",
-              duration: 1.2,
-              ease: "power2.in",
-              id: i + 1,
-            },
-            "rotate"
-          )
-          .add(() => {
-            element.classList.add(`menu-image${i}`);
-          });
-      });
-    };
-
-    const resumeMenu = () => {
-      gallerypics.forEach(function (element, i) {
-        //  let gallerypic = querySelector(".gallery__item-imginner");
-        let imageSet = element.getAttribute("data-image");
-
-        // console.log(element, imageSet, i);
-        // element.style.backgroundImage = `${imageSet}`;
-
-        let timeline = gsap.timeline();
-
-        timeline
-          .to(element, {
-            transform: "rotate3d(0, 1, 0, 0deg);",
-            perspective: "1000px",
-            duration: 1.2,
-            ease: "power2.in",
-            id: i + 1,
-          })
-          .add(() => {
-            element.classList.remove(`menu-image${i}`);
-          });
-      });
-    };
-
-    workMenu.addEventListener("mouseenter", () => {
-      changeWorkMenu();
-    });
-
-    // workMenu.addEventListener("mouseleave", () => {
-    //   resumeMenu();
-    // });
-
-    //Group 8; code to toggle dark-light modes
+    //Group 9; code to toggle dark-light modes
 
     let toggleButton = select(".knob");
     let togglePath = select(".dark-toggle");
@@ -394,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // bodyComputedStyle.getPropertyValue('--color-black'),
     });
 
-    //Group 9; initiating and controlling custom cursor
+    //Group 10; initiating and controlling custom cursor
 
     if (innerWidth > 767) {
       let cursor = new MouseFollower();
@@ -501,18 +439,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 0);
 });
 
-//use the defaults
-
-//  Group 13: darkmode if user browser prefers
-
-// if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-//   // User prefers dark mode, add the dark-mode class to the body element
-//   document.body.classList.add("dark-mode");
-// } else {
-//   document.body.classList.remove("dark-mode");
-// }
-
-//Animate the fucking explorer
+// Group 13: Animate the fucking explorer
 let emailbox = select(".email-box");
 
 let explorer = select(".in-world-btn-wrap");
@@ -562,4 +489,78 @@ explorer.addEventListener("mouseenter", () => {
 
 explorer.addEventListener("mouseleave", () => {
   expoHoverTl.reverse();
+});
+
+//use the defaults
+
+//  Group 13: darkmode if user browser prefers
+
+// if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+//   // User prefers dark mode, add the dark-mode class to the body element
+//   document.body.classList.add("dark-mode");
+// } else {
+//   document.body.classList.remove("dark-mode");
+// }
+//
+let projects = selectAll(".project__header__linkb");
+
+projects.forEach((project, i) => {
+  // Function to convert RGB values to CSS rgb() format
+  function rgbToCss(rgb) {
+    return `rgb(${rgb.join(", ")})`;
+  }
+
+  // Dynamically generate the backgroundColor property value
+  let fadeBlack = rgbToCss([0, 0, 0]); // Black color
+  let fadeMain = rgbToCss([210, 152, 205]); // Main color
+
+  let projectstl = gsap.timeline({ paused: true });
+
+  projectstl.addLabel("start", 0).fromTo(
+    project,
+    { duration: 0.5, backgroundColor: fadeBlack, ease: "none" },
+    {
+      duration: 0.5,
+      backgroundColor: fadeMain,
+      ease: "none",
+    },
+    "start"
+  );
+
+  project.addEventListener("mouseenter", () => {
+    projectstl.play();
+  });
+  project.addEventListener("mouseleave", () => {
+    projectstl.reverse();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  let toTopbutton = select("#toTop");
+
+  // Add an event listener to check scroll position
+  function showTotop() {
+    let scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+    if (scrollPosition > 1.2 * window.innerHeight) {
+      toTopbutton.style.display = "block";
+    } else {
+      toTopbutton.style.display = "none";
+    }
+  }
+  showTotop();
+  window.addEventListener("scroll", showTotop);
+
+  function scrollTop() {
+    gsap.to(window, {
+      duration: 2,
+      delay: 0,
+      scrollTo: {
+        y: ".hero-main",
+      },
+      ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+  }
+
+  toTopbutton.addEventListener("click", scrollTop);
 });

@@ -1403,7 +1403,7 @@ main {
   max-height: 50svh;
   display: grid;
   grid-template-columns: 100px 1fr 30px;
-  grid-template-areas: "greatwork morework logowork";
+  grid-template-areas: "morework greatwork logowork";
 }
 
 .where-morework {
@@ -1423,6 +1423,8 @@ main {
 
 .great-work {
   grid-area: greatwork;
+  display: grid;
+  justify-content: center;
 }
 
 .free-time {
@@ -2559,4 +2561,25 @@ span {
   height: 100vh;
   z-index: 2000;
   pointer-events: none;
+}
+#toTop {
+  border: none;
+  bottom: 10px;
+  height: 45px;
+  overflow: hidden;
+  position: fixed;
+  right: 10px;
+  rotate: -45deg;
+  text-decoration: none;
+  text-indent: 100%;
+  width: 45px;
+  z-index: 20;
+}
+#toTop svg {
+  left: 0;
+  position: absolute;
+  width: 88%;
+}
+#toTop svg path {
+  stroke: white;
 }
